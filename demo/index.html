@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>카드뉴스 메이커 데모</title>
+  <meta name="description" content="해외 테크 뉴스 카드뉴스 메이커의 포트폴리오용 데모. 텍스트·표현·구독 유도 카드를 편집하고 PNG로 내보낼 수 있어요." />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="demo-banner" role="note">
+    포트폴리오용 데모 버전입니다. 실제 버전은 외신 자동 수집·AI 번역 기능이 포함돼 있어요
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      카드뉴스 메이커 <span class="badge">DEMO</span>
+    </div>
+    <button type="button" id="resetBtn" class="ghost-btn">예시로 되돌리기</button>
+  </header>
+
+  <main class="layout">
+    <aside class="panel panel-left">
+      <section class="box">
+        <details class="article" open>
+          <summary>
+            <span class="box-title">예시 기사</span>
+            <span class="muted small" id="articleMeta"></span>
+          </summary>
+          <div class="tabs" role="tablist">
+            <button type="button" role="tab" data-tab="articleKo" aria-selected="true">번역</button>
+            <button type="button" role="tab" data-tab="articleEn" aria-selected="false">원문</button>
+          </div>
+          <div class="article-body" id="articleKo"></div>
+          <div class="article-body" id="articleEn" hidden></div>
+          <p class="muted small note">
+            데모용으로 직접 쓴 가상 기사예요. 실제 버전에서는 외신을 자동으로 모으고 AI가 번역과 카드 초안을 만들어요.
+          </p>
+        </details>
+      </section>
+
+      <section class="box">
+        <h2 class="box-title">카드 목록</h2>
+        <div class="add-row">
+          <button type="button" data-add="text">+ 텍스트</button>
+          <button type="button" data-add="expression">+ 표현</button>
+          <button type="button" data-add="subscribe">+ 구독 유도</button>
+        </div>
+        <ol id="cardList" class="card-list"></ol>
+      </section>
+    </aside>
+
+    <section class="stage" aria-label="미리보기">
+      <div class="canvas-wrap">
+        <canvas id="preview" width="1080" height="1350" aria-label="선택한 카드 미리보기"></canvas>
+      </div>
+      <div class="stage-actions">
+        <button type="button" id="exportOne" class="primary-btn">이 카드 PNG 저장</button>
+        <button type="button" id="exportAll" class="secondary-btn">전체 카드 ZIP 저장</button>
+      </div>
+      <p class="muted small center">편집한 내용은 서버가 아닌 이 브라우저에만 임시 저장돼요.</p>
+    </section>
+
+    <aside class="panel panel-right">
+      <section class="box">
+        <h2 class="box-title">카드 편집 <span class="muted small" id="editorType"></span></h2>
+        <form id="editor" class="form" onsubmit="return false"></form>
+      </section>
+      <section class="box">
+        <h2 class="box-title">전체 설정</h2>
+        <form id="settings" class="form" onsubmit="return false"></form>
+      </section>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/sample-data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/zip.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
